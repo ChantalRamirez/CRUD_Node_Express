@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
 
-const sequelize = new Sequelize('postgres://postgres:admin@127.0.0.1:5432/bedu_travels') // Example for postgres
+const sequelize = new Sequelize( process.env.DATABASE || 'postgres://postgres:admin@127.0.0.1:5432/bedu_travels') // Example for postgres
 
 const Destination = sequelize.define("destinations", {
     title: DataTypes.TEXT,
