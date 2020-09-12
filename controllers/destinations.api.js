@@ -27,7 +27,7 @@ router.get('/:id/show',async (req, res, next) => {
   }),
 
   
-  router.post('/create', authenticate, async (req, res) => {
+  router.post('/create', async (req, res) => {
     try {
       const destination = req.body;
       if(req.files) {
@@ -38,7 +38,7 @@ router.get('/:id/show',async (req, res, next) => {
         await image.mv(filePathAndName);
         const imageUrl = await uploadFileToS3(filePathAndName, generatedFileName);
         destination.image = imageUrl;
-        
+
       }
       await destinationsModel.create(destination);
       res.status(201).json({ sucess: true });
