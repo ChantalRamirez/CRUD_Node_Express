@@ -6,12 +6,20 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 var nunjucks = require('nunjucks');
-
+const fileUpload = require('express-fileupload');
+const cors = require('cors');
 
 var destinationsRouter = require('./controllers/destinations');
 var apidestinationsRouter= require('./controllers/destinations.api');
 var usersRouter= require('./controllers/users.api');
 var app = express();
+
+// Para aceptar origienes cruzados
+app.use(cors());
+
+app.use(fileUpload({
+  createParentPath: true
+}));
 
 // view engine setup
 nunjucks.configure('views', {

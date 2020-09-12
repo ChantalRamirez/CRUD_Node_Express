@@ -30,6 +30,7 @@ router.get('/:id/show',async (req, res, next) => {
   router.post('/create', async (req, res) => {
     try {
       const destination = req.body;
+      console.log (destination);
       if(req.files) {
         let image = req.files.image;
         const fileName = image.name;
